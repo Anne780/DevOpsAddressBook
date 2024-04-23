@@ -1,1 +1,27 @@
-
+pipeline {
+    agent any
+    tools {
+        // Define the Maven tool with the 'maven' label
+        maven 'M2_HOME'
+    }
+    stages {
+        stage('Compile') {
+            steps {
+                // Compile the source code using Maven
+                sh 'mvn compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Execute JUnit test cases using Maven
+                sh 'mvn test'
+            }
+        }
+        stage('Package') {
+            steps {
+                // Package the application as a WAR file using Maven
+                sh 'mvn package'
+            }
+        }
+    }
+}
