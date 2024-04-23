@@ -1,25 +1,26 @@
 pipeline {
     agent any
     tools {
-        // Define the Maven tool with the 'maven' label
         maven 'M2_HOME'
     }
     stages {
-        stage('Compile') {
+        stage('Checkout the Project from GitHub') {
             steps {
-                // Compile the source code using Maven
+                git 'https://github.com/devopscbabu/DevOpsAddressBook.git'
+            }
+        }
+        stage('Compile Maven Project') {
+            steps {
                 sh 'mvn compile'
             }
         }
-        stage('Test') {
+        stage('Test Maven Project') {
             steps {
-                // Execute JUnit test cases using Maven
                 sh 'mvn test'
             }
         }
-        stage('Package') {
+        stage('Package Maven Project') {
             steps {
-                // Package the application as a WAR file using Maven
                 sh 'mvn package'
             }
         }
