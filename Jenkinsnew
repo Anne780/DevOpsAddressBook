@@ -4,24 +4,24 @@ pipeline {
         maven 'M2_HOME'
     }
     stages {
-        stage('Checkout the Project from GitHub') {
+        stage('Checkout the project from GitHub') {
             steps {
                 git 'https://github.com/devopscbabu/DevOpsAddressBook.git'
             }
         }
-        stage('Compile Maven Project') {
+        stage('Compile Maven project') {
             steps {
-                sh 'mvn compile'
+                sh 'mvn clean compile'
             }
         }
-        stage('Test Maven Project') {
+        stage('Test Maven project') {
             steps {
-                sh 'mvn test'
+                sh 'mvn clean test'
             }
         }
-        stage('Package Maven Project') {
+        stage('Package Maven project') {
             steps {
-                sh 'mvn package'
+                sh 'mvn clean package'
             }
         }
     }
